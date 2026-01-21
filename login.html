@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Đăng nhập</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .login-container { max-width:400px; margin:100px auto; padding:30px; background:#fff; border-radius:10px; box-shadow:0 4px 20px rgba(0,0,0,0.1); }
+    h2 { color:#c8102e; text-align:center; margin-bottom:20px; }
+    input { width:100%; padding:12px; margin:10px 0; border:1px solid #ddd; border-radius:6px; }
+    button { width:100%; padding:12px; background:#c8102e; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:bold; }
+    button:hover { background:#a80d24; }
+    #msg { color:red; text-align:center; margin-top:10px; }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Đăng nhập</h2>
+    <input type="text" id="username" placeholder="Tên đăng nhập">
+    <input type="password" id="password" placeholder="Mật khẩu">
+    <button onclick="login()">Đăng nhập</button>
+    <p id="msg"></p>
+  </div>
+
+  <script>
+    function login() {
+      const user = document.getElementById("username").value.trim();
+      const pass = document.getElementById("password").value.trim();
+      const msg = document.getElementById("msg");
+
+      // Tài khoản cứng (demo)
+      if (user === "admin" && pass === "admin123") {
+        localStorage.setItem("role", "admin");
+        window.location.href = "admin.html";
+      } else if (user === "user" && pass === "user123") {
+        localStorage.setItem("role", "user");
+        window.location.href = "index.html";
+      } else {
+        msg.textContent = "Sai tên đăng nhập hoặc mật khẩu!";
+      }
+    }
+  </script>
+</body>
+</html>

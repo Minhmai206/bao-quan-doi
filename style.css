@@ -1,0 +1,447 @@
+/**********************************************
+ * STYLE.CSS - Thiết kế hiện đại, chuyên nghiệp
+ * Lấy cảm hứng từ các trang báo lớn VN (VnExpress, Tuổi Trẻ, Báo Mới)
+ * Responsive hoàn toàn, tối ưu mobile & desktop
+ * Màu sắc: đỏ chủ đạo (#c8102e), trắng, xám trung tính
+ * Ngày cập nhật: 12/01/2026
+ **********************************************/
+
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 62.5%; /* 1rem = 10px → dễ tính toán */
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #1a1a1a;
+  line-height: 1.6;
+  font-size: 1.6rem;
+  min-height: 100vh;
+}
+
+/* ==================== HEADER ==================== */
+
+.flag-bg {
+  background: linear-gradient(to bottom, #ffffff, #f9f9f9);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border-bottom: 6px solid #c8102e;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.logo .title {
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 900;
+  color: #c8102e;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+}
+
+.slogan {
+  font-size: 1.4rem;
+  color: #444;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ==================== NAV MENU ==================== */
+
+.menu {
+  background: #c8102e;
+  padding: 1.2rem 0;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  margin: 0 1.8rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  position: relative;
+  padding-bottom: 0.4rem;
+}
+
+.menu a:hover,
+.menu a:focus {
+  opacity: 0.92;
+  color: #fffde7;
+}
+
+.menu a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 50%;
+  background: #fffde7;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.menu a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* ==================== BANNER ==================== */
+
+.banner {
+  width: 100%;
+  overflow: hidden;
+}
+
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  filter: brightness(0.92);
+}
+
+/* ==================== CONTAINER & GRID ==================== */
+
+.container {
+  max-width: 1240px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.4rem;
+}
+
+/* News Card */
+.news-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.news-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.14);
+}
+
+.news-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.news-card:hover img {
+  transform: scale(1.05);
+}
+
+.meta {
+  padding: 1.4rem 1.6rem;
+}
+
+.news-card h3 {
+  font-size: 1.8rem;
+  color: #c8102e;
+  margin: 0 0 0.6rem;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.news-card p {
+  color: #444;
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+/* ==================== SEARCH & FILTER ==================== */
+
+#searchBox,
+#categoryFilter {
+  width: 100%;
+  padding: 1rem;
+  margin: 0.8rem 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  background: white;
+  transition: border-color 0.3s;
+}
+
+#searchBox:focus,
+#categoryFilter:focus {
+  border-color: #c8102e;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(200,16,46,0.15);
+}
+
+/* ==================== DETAIL PAGE ==================== */
+
+.article-full {
+  max-width: 900px;
+  margin: 3rem auto;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.article-full h2 {
+  color: #c8102e;
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.article-full img {
+  width: 100%;
+  border-radius: 10px;
+  margin: 2rem 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* ==================== ADMIN PAGE ==================== */
+
+.admin-container {
+  max-width: 900px;
+  margin: 3rem auto;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+}
+
+.admin-container h2 {
+  color: #c8102e;
+  font-size: 2.4rem;
+  margin-bottom: 1.8rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 1rem;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 1.2rem;
+  margin: 1rem 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  transition: border 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #c8102e;
+  outline: none;
+}
+
+textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+.btn-group {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-primary {
+  background: #c8102e;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #a80d24;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background: #5c636a;
+}
+
+/* Admin list */
+#adminList > div {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+#adminList > div:hover {
+  background: #f8f9fa;
+}
+
+#adminList h3 {
+  font-size: 1.6rem;
+  color: #222;
+  margin: 0;
+}
+
+#adminList small {
+  color: #666;
+  font-size: 1.3rem;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 1024px) {
+  .container { padding: 0 2rem; }
+  .main { gap: 2rem; }
+}
+
+@media (max-width: 768px) {
+  .menu a {
+    margin: 0 1rem;
+    font-size: 1.4rem;
+  }
+  .news-card img {
+    height: 180px;
+  }
+  .logo .title {
+    font-size: 3.2rem;
+  }
+  .btn-group {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .flag-bg { padding: 1.5rem 1rem; }
+  .logo .title { font-size: 2.6rem; }
+  .menu { padding: 1rem 0; }
+  .menu a { margin: 0.6rem; display: inline-block; }
+  .container { padding: 0 1rem; }
+  .news-card img { height: 160px; }
+}
+/* Animation nâng cao thêm vào style.css */
+
+/* Card fade-in khi load */
+.news-card {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease forwards;
+  animation-delay: calc(0.1s * var(--order));
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hover zoom + shadow */
+.news-card:hover img {
+  transform: scale(1.08);
+  transition: transform 0.4s ease;
+}
+
+/* Menu item slide underline */
+.menu a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  transition: width 0.35s ease;
+}
+
+.menu a:hover::after { width: 100%; }
+
+/* Button pulse */
+.btn:active {
+  animation: pulse 0.3s ease;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+/* Loading skeleton cho card (khi chờ dữ liệu) */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.news-card {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  animation: smoothReveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(0.12s * var(--order, 0));
+}
+
+@keyframes smoothReveal {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.news-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.menu a {
+  position: relative;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.menu a:hover {
+  transform: translateY(-2px);
+  color: #ffeb3b;
+}
+
+.btn {
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(200,16,46,0.3);
+}
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  max-height: 400px; /* Giới hạn chiều cao */
+}

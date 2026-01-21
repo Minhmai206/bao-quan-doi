@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin – Báo Quân đội nhân dân</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+</head>
+<body>
+  <header class="top-header">
+    <div class="banner">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDegXWq2A2M96pBVRmJV0FPkhWRMjEGnizZQ&s" alt="Banner">
+    </div>
+    <div class="flag-bg">
+      <div class="logo">
+        <span class="title">Sư Đoàn 308 Trung Đoàn 102</span>
+      </div>
+      <p class="slogan">Tác Giả Trang Báo: Đại úy Lê Thọ Huyện-Chính trị viên-Đại đội 7-Tiểu đoàn 8</p>
+    </div>
+  </header>
+
+  <div class="container">
+    <h2>Soạn bài mới</h2>
+    <input type="text" id="newTitle" placeholder="Tiêu đề bài báo">
+    <input type="text" id="newImage" placeholder="URL ảnh minh họa (hoặc để trống)">
+    <textarea id="newBody" placeholder="Nội dung bài viết"></textarea>
+    <select id="newCategory">
+      <option value="Tin Thế Giới">Tin Thế Giới</option>
+      <option value="Tin Trong Nước">Tin Trong Nước</option>
+      <option value="Tin LLVT">Tin LLVT</option>
+      <option value="Tin Đơn Vị">Tin Đơn Vị</option>
+    </select>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
+      <button class="btn" onclick="saveArticle()">Đăng bài</button>
+      <button class="btn" onclick="resetForm()">Làm mới</button>
+    </div>
+
+    <hr>
+    <h2>Danh sách bài viết</h2>
+    <div id="adminList"></div>
+  </div>
+
+  <script src="app.js"></script>
+  <script> showAdminArticles("adminList"); </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Báo Quân đội nhân dân điện tử</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+  <script>
+    // Tự động filter theo category từ URL
+    const params = new URLSearchParams(window.location.search);
+    const catFromUrl = params.get('category');
+    if (catFromUrl) {
+      const select = document.getElementById("categoryFilter");
+      if (select) {
+        select.value = decodeURIComponent(catFromUrl);
+        filterArticles();  // Gọi hàm filter ngay
+      }
+    }
+  </script>
+</head>
+<body>
+  <header class="top-header">
+    <div class="flag-bg">
+      <div class="logo">
+        <span class="title">Sư Đoàn 308 Trung Đoàn 102</span>
+      </div>
+      <p class="slogan">Tác Giả Trang Báo: Đại úy Lê Thọ Huyện-Chính trị viên-Đại đội 7-Tiểu đoàn 8</p>
+    </div>
+    <nav class="menu">
+      <a href="index.html">Trang chủ</a>
+      <a href="#" onclick="filterByCategory('Tin thế giới'); return false;">Tin thế giới</a>
+      <a href="#" onclick="filterByCategory('Tin trong nước'); return false;">Tin trong nước</a>
+      <a href="#" onclick="filterByCategory('Tin LLVT'); return false;">Tin LLVT</a>
+      <a href="#" onclick="filterByCategory('Tin đơn vị'); return false;">Tin đơn vị</a>
+      <a href="login.html" style="background:#fff;color:#c8102e;border-radius:4px;padding:6px 12px;">Đăng nhập Admin</a>
+    </nav>
+  </header>
+
+  <div class="banner">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDegXWq2A2M96pBVRmJV0FPkhWRMjEGnizZQ&s" alt="Banner">
+  </div>
+
+  <div class="container">
+    <input type="text" id="searchBox" placeholder="🔍 Tìm kiếm bài viết..." oninput="searchArticles()">
+    <select id="categoryFilter" onchange="filterArticles()">
+      <option value="all">-- Tất cả chuyên mục --</option>
+      <option value="Tin thế giới">Tin thế giới</option>
+      <option value="Tin trong nước">Tin trong nước</option>
+      <option value="Tin LLVT">Tin LLVT</option>
+      <option value="Tin đơn vị">Tin đơn vị</option>
+    </select>
+  </div>
+
+  <main class="main container" id="news-grid"></main>
+
+  <script src="app.js"></script>
+  <script> showArticlesGrid("news-grid"); </script>
+</body>
+</html>

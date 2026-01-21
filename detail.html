@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chi tiết bài báo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+</head>
+<body>
+  <header class="top-header">
+    <div class="banner">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDegXWq2A2M96pBVRmJV0FPkhWRMjEGnizZQ&s" alt="Banner">
+      </div>
+    <div class="flag-bg">
+      <div class="logo">
+        <span class="title">Sư Đoàn 308 Trung Đoàn 102</span>
+      </div>
+      <p class="slogan">Tác Giả Trang Báo: Đại úy Lê Thọ Huyện-Chính trị viên-Đại đội 7-Tiểu đoàn 8</p>
+    </div>
+    <nav class="menu">
+      <a href="index.html">Trang chủ</a>
+      <a href="#">Tin thế giới</a>
+      <a href="#">Tin trong nước</a>
+      <a href="#">Tin LLVT</a>
+      <a href="#">Tin đơn vị</a>
+    </nav>
+  </header>
+
+  <div class="container" id="detail-content"></div>
+
+  <script src="app.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    if (id) {
+      showDetailPage(id, "detail-content");
+    } else {
+      document.getElementById("detail-content").innerHTML = "<p>Bài viết không tồn tại.</p>";
+    }
+  </script>
+</body>
+</html>
