@@ -1,30 +1,28 @@
 // Firebase setup
 const firebaseConfig = {
-  apiKey: "AIzaSyDny-4u4KzM0t-8kP7Xj1pS1h8m9W1F1j0", // Thay bằng apiKey thật của bạn
+  apiKey: "AIzaSyDny-4u4KzM0t-8kP7Xj1pS1h8m9W1F1j0",
   authDomain: "baoquandoi-aa603.firebaseapp.com",
   databaseURL: "https://baoquandoi-aa603-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "baoquandoi-aa603",
   storageBucket: "baoquandoi-aa603.appspot.com",
-  messagingSenderId: "1234567890", // Thay bằng messagingSenderId thật
-  appId: "1:1234567890:web:abc123" // Thay bằng appId thật
+  messagingSenderId: "1234567890",
+  appId: "1:1234567890:web:abc123"
 };
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// Get articles (realtime)
 async function getArticles() {
   try {
     const snapshot = await db.ref('articles').once('value');
     const data = snapshot.val() || {};
-    return Object.values(data).sort((a, b) => b.id - a.id); // Mới nhất đầu
+    return Object.values(data).sort((a, b) => b.id - a.id);
   } catch (e) {
     console.error(e);
     return [];
   }
 }
 
-// Show grid
 function showArticlesGrid(containerId) {
   const container = document.getElementById(containerId);
   getArticles().then(articles => {
@@ -48,12 +46,10 @@ function showArticlesGrid(containerId) {
   });
 }
 
-// Go detail
 function goDetail(id) {
   window.location.href = `detail.html?id=${id}`;
 }
 
-// Show detail
 async function showDetailPage(id, containerId) {
   const container = document.getElementById(containerId);
   const articles = await getArticles();
@@ -73,7 +69,6 @@ async function showDetailPage(id, containerId) {
 
 let editId = null;
 
-// Save bài
 async function saveArticle() {
   const title = document.getElementById("newTitle").value.trim();
   const image = document.getElementById("newImage").value.trim();
@@ -99,7 +94,6 @@ async function saveArticle() {
   }
 }
 
-// Reset form
 function resetForm() {
   document.getElementById("newTitle").value = "";
   document.getElementById("newImage").value = "";
@@ -108,7 +102,6 @@ function resetForm() {
   editId = null;
 }
 
-// Show admin list
 async function showAdminArticles(containerId) {
   const container = document.getElementById(containerId);
   const articles = await getArticles();
@@ -137,7 +130,6 @@ async function showAdminArticles(containerId) {
   });
 }
 
-// Edit bài
 async function editArticle(id) {
   const articles = await getArticles();
   const a = articles.find(x => String(x.id) === String(id));
@@ -150,7 +142,6 @@ async function editArticle(id) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Xóa bài
 async function deleteArticle(id) {
   if (!confirm("Xác nhận xóa?")) return;
   try {
