@@ -5,7 +5,6 @@
   <title>Báo Quân đội nhân dân điện tử</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
-  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
 </head>
@@ -46,18 +45,27 @@
 
   <script src="app.js"></script>
   <script>
-    showArticlesGrid("news-grid");
+    function loadAndFilter() {
+      showArticlesGrid("news-grid");
 
-    // Filter theo URL với delay
-    const params = new URLSearchParams(window.location.search);
-    const catFromUrl = params.get('category');
-    if (catFromUrl) {
-      const select = document.getElementById("categoryFilter");
-      if (select) {
-        select.value = decodeURIComponent(catFromUrl);
-        setTimeout(filterArticles, 500);
+      const params = new URLSearchParams(window.location.search);
+      const catFromUrl = params.get('category');
+      if (catFromUrl) {
+        const select = document.getElementById("categoryFilter");
+        if (select) {
+          select.value = decodeURIComponent(catFromUrl);
+          const checkLoaded = setInterval(() => {
+            if (document.querySelectorAll('#news-grid .news-card').length > 0 || 
+                document.querySelector('#news-grid p')) {
+              clearInterval(checkLoaded);
+              filterArticles();
+            }
+          }, 300);
+        }
       }
     }
+
+    loadAndFilter();
   </script>
 </body>
 </html>
