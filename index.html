@@ -8,6 +8,18 @@
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+  <script>
+    // Tự động filter theo category từ URL
+    const params = new URLSearchParams(window.location.search);
+    const catFromUrl = params.get('category');
+    if (catFromUrl) {
+      const select = document.getElementById("categoryFilter");
+      if (select) {
+        select.value = decodeURIComponent(catFromUrl);
+        filterArticles();  // Gọi hàm filter ngay
+      }
+    }
+  </script>
 </head>
 <body>
   <header class="top-header">
@@ -19,10 +31,10 @@
     </div>
     <nav class="menu">
       <a href="index.html">Trang chủ</a>
-      <a href="#" onclick="filterByCategory('Tin thế giới'); return false;">Tin thế giới</a>
-      <a href="#" onclick="filterByCategory('Tin trong nước'); return false;">Tin trong nước</a>
-      <a href="#" onclick="filterByCategory('Tin LLVT'); return false;">Tin LLVT</a>
-      <a href="#" onclick="filterByCategory('Tin đơn vị'); return false;">Tin đơn vị</a>
+      <a href="?category=Tin thế giới">Tin thế giới</a>
+      <a href="?category=Tin trong nước">Tin trong nước</a>
+      <a href="?category=Tin LLVT">Tin LLVT</a>
+      <a href="?category=Tin đơn vị">Tin đơn vị</a>
       <a href="login.html" style="background:#fff;color:#c8102e;border-radius:4px;padding:6px 12px;">Đăng nhập Admin</a>
     </nav>
   </header>
@@ -46,19 +58,5 @@
 
   <script src="app.js"></script>
   <script> showArticlesGrid("news-grid"); </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const params = new URLSearchParams(window.location.search);
-      const cat = params.get('category');
-      if (cat && typeof filterArticles === 'function') {
-        const select = document.getElementById('categoryFilter');
-        if (select) {
-          select.value = decodeURIComponent(cat);
-          filterArticles();
-        }
-      }
-    });
-  </script>
 </body>
 </html>
