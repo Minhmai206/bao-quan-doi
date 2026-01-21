@@ -58,5 +58,17 @@
 
   <script src="app.js"></script>
   <script> showArticlesGrid("news-grid"); </script>
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  const cat = params.get('category');
+  if (cat) {
+    const select = document.getElementById('categoryFilter');
+    if (select) {
+      select.value = decodeURIComponent(cat);
+      filterArticles(); // Gọi filter ngay
+    }
+  }
+</script>
 </body>
+
 </html>
