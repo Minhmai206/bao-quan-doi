@@ -173,8 +173,8 @@ async function filterArticles() {
   const select = document.getElementById("categoryFilter");
   let cat = select ? select.value.trim() : "all";
   const articles = await getArticles();
-  const filtered = cat === "all" 
-    ? articles 
+  const filtered = cat === "all"
+    ? articles
     : articles.filter(a => (a.category || "").trim() === cat);
   renderFiltered(filtered);
 }
@@ -214,15 +214,12 @@ function escapeHtml(str) {
 function nl2brEscape(text) {
   return escapeHtml(text).replace(/\n/g, "<br>");
 }
+
 function filterByCategory(category) {
-  document.getElementById("categoryFilter").value = category;
-  filterArticles();
-  document.getElementById("news-grid").scrollIntoView({behavior: "smooth"});
+  const select = document.getElementById("categoryFilter");
+  if (select) {
+    select.value = category;
+    filterArticles();
+    document.getElementById("news-grid")?.scrollIntoView({ behavior: "smooth" });
+  }
 }
-  document.getElementById("categoryFilter").value = category;
-  filterArticles();
-  
-  // Cuộn mượt đến phần lưới tin tức
-  document.getElementById("news-grid").scrollIntoView({ behavior: "smooth" });
-
-
