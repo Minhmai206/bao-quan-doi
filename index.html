@@ -59,14 +59,16 @@
   <script src="app.js"></script>
   <script> showArticlesGrid("news-grid"); </script>
   <script>
-  window.addEventListener('load', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     const cat = params.get('category');
     if (cat) {
       const select = document.getElementById('categoryFilter');
       if (select) {
         select.value = decodeURIComponent(cat);
-        filterArticles(); // Gọi filter
+        if (typeof filterArticles === 'function') {
+          filterArticles();
+        }
       }
     }
   });
@@ -74,4 +76,5 @@
 </body>
 
 </html>
+
 
