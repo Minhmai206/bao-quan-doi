@@ -170,12 +170,18 @@ async function searchArticles() {
 }
 
 async function filterArticles() {
-  const select = document.getElementById("categoryFilter");
-  let cat = select ? select.value.trim() : "all";
+  let cat = document.getElementById("categoryFilter")?.value?.trim() || "all";
+  if (cat === "all") {
+    renderFiltered(await getArticles());
+    return;
+  }
+  
   const articles = await getArticles();
-  const filtered = cat === "all"
-    ? articles
-    : articles.filter(a => (a.category || "").trim() === cat);
+  const filtered = articles.filter(a => {
+    const articleCat = (a.category || "").trim();
+    return articleCat.toLowerCase() === cat.toLowerCase();
+  });
+  
   renderFiltered(filtered);
 }
 
@@ -213,13 +219,4 @@ function escapeHtml(str) {
 
 function nl2brEscape(text) {
   return escapeHtml(text).replace(/\n/g, "<br>");
-}
-
-function filterByCategory(category) {
-  const select = document.getElementById("categoryFilter");
-  if (select) {
-    select.value = category;
-    filterArticles();
-    document.getElementById("news-grid")?.scrollIntoView({ behavior: "smooth" });
-  }
 }
