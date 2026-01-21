@@ -8,18 +8,6 @@
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
-  <script>
-    // Tự động filter theo category từ URL
-    const params = new URLSearchParams(window.location.search);
-    const catFromUrl = params.get('category');
-    if (catFromUrl) {
-      const select = document.getElementById("categoryFilter");
-      if (select) {
-        select.value = decodeURIComponent(catFromUrl);
-        filterArticles();  // Gọi hàm filter ngay
-      }
-    }
-  </script>
 </head>
 <body>
   <header class="top-header">
@@ -58,22 +46,19 @@
 
   <script src="app.js"></script>
   <script> showArticlesGrid("news-grid"); </script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const params = new URLSearchParams(window.location.search);
-  const cat = params.get('category');
-  if (cat) {
-    const select = document.getElementById('categoryFilter');
-    if (select) {
-      select.value = decodeURIComponent(cat);
-      filterArticles();
-    }
-  }
-});
-</script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const params = new URLSearchParams(window.location.search);
+      const cat = params.get('category');
+      if (cat && typeof filterArticles === 'function') {
+        const select = document.getElementById('categoryFilter');
+        if (select) {
+          select.value = decodeURIComponent(cat);
+          filterArticles();
+        }
+      }
+    });
+  </script>
 </body>
-
 </html>
-
-
-
