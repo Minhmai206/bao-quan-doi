@@ -170,18 +170,14 @@ async function searchArticles() {
 }
 
 async function filterArticles() {
-  let cat = document.getElementById("categoryFilter")?.value?.trim() || "all";
-  if (cat === "all") {
-    renderFiltered(await getArticles());
-    return;
-  }
-  
+  const select = document.getElementById("categoryFilter");
+  let cat = select ? select.value.trim() : "all";
+
   const articles = await getArticles();
-  const filtered = articles.filter(a => {
-    const articleCat = (a.category || "").trim();
-    return articleCat.toLowerCase() === cat.toLowerCase();
-  });
-  
+  const filtered = (cat === "all")
+    ? articles
+    : articles.filter(a => (a.category || "").trim() === cat);
+
   renderFiltered(filtered);
 }
 
@@ -231,3 +227,4 @@ function filterByCategory(category) {
   
   // Cuộn mượt đến phần lưới tin tức
   document.getElementById("news-grid").scrollIntoView({ behavior: "smooth" });
+
