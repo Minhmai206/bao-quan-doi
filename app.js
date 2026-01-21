@@ -172,15 +172,12 @@ async function searchArticles() {
 async function filterArticles() {
   const select = document.getElementById("categoryFilter");
   let cat = select ? select.value.trim() : "all";
-
   const articles = await getArticles();
-  const filtered = (cat === "all")
-    ? articles
+  const filtered = cat === "all" 
+    ? articles 
     : articles.filter(a => (a.category || "").trim() === cat);
-
   renderFiltered(filtered);
 }
-
 
 function renderFiltered(list) {
   const container = document.getElementById("news-grid");
@@ -227,4 +224,5 @@ function filterByCategory(category) {
   
   // Cuộn mượt đến phần lưới tin tức
   document.getElementById("news-grid").scrollIntoView({ behavior: "smooth" });
+
 
